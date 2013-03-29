@@ -32,7 +32,7 @@ void loop() {
   
   //long startTime = millis();
 
-  displayNumber(5678);
+  displayNumber(123);
 
   //while( (millis() - startTime) < 2000) {
   //displayNumber(1217);
