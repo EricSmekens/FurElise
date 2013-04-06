@@ -1,5 +1,9 @@
+
+
 /////*************************************** Real-time clock
+
 #include <Wire.h>
+#include <RTClib.h>
 #define DS1307_I2C_ADDRESS 0x68  // This is the I2C address
 // Arduino version compatibility Pre-Compiler Directives
 #if defined(ARDUINO) && ARDUINO >= 100   // Arduino v1.0 and newer
@@ -11,7 +15,7 @@
 #endif
 // Global Variables
 int command = 0;       // This is the command char, in ascii form, sent from the serial port     
-int i;
+int index;
 long previousMillis = 0;        // will store last time Temp was updated
 byte second, minute, hour, dayOfWeek, dayOfMonth, month, year;
 byte test;
@@ -312,16 +316,25 @@ void setup()
   //zero=0x00;
 }
 
+long anniversaryDate = 1284163200; //11-09-2013 00:00:00
+long unixTimeNow = 0;
 int numberOfDays = 0;
 void loop()
 {
   //Initialise something
   getDateDs1307();
-  numberOfDays = year;
+  getUnixTimeNow();
+  numberOfDays = (unixTimeNow - anniversaryDate) / 86400;
   while(true)
-  {
-    
+  {   
     displayNumber(numberOfDays);
     delay(10);
   }
+}
+
+void getUnixTimeNow()
+{
+  //second, minute, hour, dayOfWeek, dayOfMonth, month, year
+  DateTime nowDate (year, month, dayOfMonth, hour, minute, second);
+  unixTimeNow = nowDate.unixtime();
 }
