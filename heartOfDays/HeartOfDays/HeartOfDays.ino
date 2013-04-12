@@ -325,10 +325,21 @@ void loop()
   getDateDs1307();
   getUnixTimeNow();
   numberOfDays = (unixTimeNow - anniversaryDate) / 86400;
+  long startMillis = millis();
+  long loopMillis = millis();
   while(true)
-  {   
+  {
+    loopMillis = millis();
+    if((loopMillis - startMillis) > 1000000)
+    //10000000)
+    {
+      startMillis = millis();
+      getDateDs1307();
+      getUnixTimeNow();
+      numberOfDays = (unixTimeNow - anniversaryDate) / 86400;
+    } //Each 0,27 Hours
     displayNumber(numberOfDays);
-    delay(10);
+    delay(20);
   }
 }
 
