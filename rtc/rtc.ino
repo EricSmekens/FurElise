@@ -226,4 +226,6 @@ void loop() {
 //Command for 6-april 2013 20:41 saturday = 7
 
 //T0041207060413
+//19 april
+//T0012227190413
 

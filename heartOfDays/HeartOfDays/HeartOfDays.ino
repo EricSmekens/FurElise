@@ -330,16 +330,15 @@ void loop()
   while(true)
   {
     loopMillis = millis();
-    if((loopMillis - startMillis) > 1000000)
-    //10000000)
+    if((loopMillis - startMillis) > 4000000)
     {
       startMillis = millis();
       getDateDs1307();
       getUnixTimeNow();
       numberOfDays = (unixTimeNow - anniversaryDate) / 86400;
-    } //Each 0,27 Hours
+    } //Each 1,1 Hours
     displayNumber(numberOfDays);
-    delay(20);
+    delay(12);
   }
 }
 
